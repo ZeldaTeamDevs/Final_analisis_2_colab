@@ -1,0 +1,11 @@
+.crdbody {
+    margin-bottom: 10px;
+  }
+
+  .navbar .dropdown-menu .nav-link {
+    color: black; /* Establece el color del texto en negro */
+}
+
+.navbar .dropdown-menu .nav-link i {
+    margin-right: 8px; /* Añade un espacio a la derecha del ícono */
+}
