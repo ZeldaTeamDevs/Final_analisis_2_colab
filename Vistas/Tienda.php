@@ -89,7 +89,7 @@
         <div class="row">
             <?php
             // Conexión a la base de datos
-            $conn = new mysqli("localhost", "root", "", "midb");
+            $conn = new mysqli("localhost", "root", "", "bd_petcorp_system");
 
             // Verifica la conexión
             if ($conn->connect_error) {
@@ -97,34 +97,29 @@
             }
 
             // Consulta SQL para obtener los productos
-            $sql = "SELECT * FROM productos";
+            $sql = "SELECT `ID_Articulo`, `Nombre_Articulo`, `Cantidad_Stock`, `Precio_Unidad`, `descripción`, `Imagen_Articulo` FROM `inventario`";
             $result = $conn->query($sql);
 
-            // Consulta SQL para obtener los productos
-                $sql = "SELECT * FROM productos";
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo '<div class="col-md-4 mb-4">';
-                        echo '<div class="card">';
-                        echo '<img src="' . $row['Imagen'] . '" class="card-img-top" alt="Producto">';
-                        echo '<div class="card-body">';
-                        echo '<h5 class="card-title">' . $row['Nombre'] . '</h5>';
-                        echo '<p class="card-text">' . $row['Descripcion'] . '</p>';
-                        echo '<p>Precio: Q' . $row['Precio'] . '</p>';
-                        echo '<a href="#" class="btn btn-primary">Comprar</a>';
-                        echo '</div>';
-                        echo '</div>';
-                        echo '</div>';
-                    }
-                } else {
-                    echo "No se encontraron productos en la base de datos.";
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div class="col-md-4 mb-4">';
+                    echo '<div class="card">';
+                    echo '<img src="' . $row['Imagen_Articulo'] . '" class="card-img-top" alt="Producto">';
+                    echo '<div class="card-body">';
+                    echo '<h5 class="card-title">' . $row['Nombre_Articulo'] . '</h5>';
+                    echo '<p class="card-text">' . $row['descripción'] . '</p>';
+                    echo '<p>Precio: ' . $row['Precio_Unidad'] . '</p>';
+                    echo '<a href="#" class="btn btn-primary">Comprar</a>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
                 }
-
+            } else {
+                echo "No se encontraron productos en la base de datos.";
+            }
 
             // Cierra la conexión
-
+            $conn->close();
             ?>
         </div>
     </div>
