@@ -29,13 +29,8 @@
                 </button>
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a href="#">
-                            <i class="fas fa-paw"></i> Ficha de Mascotas
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#">
-                            <i class="fas fa-paw"></i> Tarjetas de Vacunación
+                        <a href="Mascota.php">
+                            <i class="fas fa-paw"></i> Mis Mascotas
                         </a>
                     </li>
                     <li class="list-group-item">
@@ -44,7 +39,7 @@
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#">
+                        <a href="Perfil.php">
                             <i class="fas fa-user"></i> Mi Perfil
                         </a>
                     </li>
@@ -129,9 +124,11 @@
                                 // Consulta SQL para obtener todas las citas
                                 // Consulta SQL para obtener todas las citas
                                 $sql = "SELECT c.ID_Cita, c.Fecha_Hora_Cita, c.Estado_Cita, m.Nombre as NombreMascota, m.Raza, v.Nombre_Veterinario 
-                                        FROM citas c
-                                        INNER JOIN tb_mascota m ON c.cod_Mascota = m.cod_Mascota
-                                        INNER JOIN veterinarios v ON c.ID_Veterinario = v.ID_Veterinario";
+                                FROM citas c
+                                INNER JOIN tb_mascota m ON c.cod_Mascota = m.cod_Mascota
+                                INNER JOIN veterinarios v ON c.ID_Veterinario = v.ID_Veterinario
+                                WHERE c.Estado_Cita = 'Activo'";
+                        
 
 
                                 $result = $conn->query($sql);

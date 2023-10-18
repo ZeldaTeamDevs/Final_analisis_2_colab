@@ -29,19 +29,29 @@
                 </button>
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <a href="#">
+                        <a href="Ficha_Mascota.php">
                             <i class="fas fa-paw"></i> Ficha de Mascotas
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#">
+                        <a href="Vacunacion.php">
                             <i class="fas fa-paw"></i> Tarjetas de Vacunación
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#">
+                        <a href="Perfil.php">
                             <i class="fas fa-user"></i> Mi Perfil
                         </a>
+                    </li>
+                    <li class="list-group-item">
+                    <a href="inicio_Usuario.php">
+                        <i class="fas fa-paw"></i> PetCorp
+                    </a>
+                    </li>
+                    <li class="list-group-item">
+                    <a href="#">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    </a>
                     </li>
                     <!-- Agrega más elementos de menú aquí -->
                 </ul>
