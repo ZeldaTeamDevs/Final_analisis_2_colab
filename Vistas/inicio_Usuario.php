@@ -87,7 +87,7 @@
                                                 $row['Nombre'] . '</h5>';
                                             echo '<p>Raza: ' . $row['Raza'] . '</p>';
                                             echo '<a
-                                                href="ver_mascota.php?id=' . $row['id_Mascota'] . '"
+                                                href="Ficha_Mascota.php"
                                                 class="btn btn-primary">Ver
                                                 Mascota</a>';
                                             echo '</div>';

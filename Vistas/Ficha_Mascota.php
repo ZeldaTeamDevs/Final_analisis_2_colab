@@ -23,12 +23,12 @@
             </button>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a href="#">
+                    <a href="Ficha_Mascota.php">
                         <i class="fas fa-paw"></i> Ficha de Mascotas
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="#">
+                    <a href="Vacunacion.php">
                         <i class="fas fa-paw"></i> Tarjetas de Vacunación
                     </a>
                 </li>
@@ -94,7 +94,7 @@
                                 echo '<td>' . $row['Especie'] . '</td>';
                                 echo '<td>' . $row['NombreUsuario'] . '</td>';
                                 echo '<td>' . $row['Fecha_Registro'] . '</td>';
-                                echo '<td><a href="ver_mascota.php?id=' . $row['id_Mascota'] . '" class="btn btn-primary">Ver Ficha</a></td>';
+                                echo '<td><a href="../Reportes/Ficha_Mascota.php" target="_blank" class="btn btn-primary">Ver Ficha</a></td>';
                                 echo '</tr>';
                             }
 
