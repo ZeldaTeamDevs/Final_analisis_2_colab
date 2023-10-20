@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="#">
+                        <a href="Programar_Cita.php">
                             <i class="far fa-calendar"></i> Programar Cita
                         </a>
                     </li>

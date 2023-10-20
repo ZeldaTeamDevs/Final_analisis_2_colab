@@ -69,7 +69,7 @@
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#">
-                            <i class="fas fa-shopping-cart"></i> Visita nuestra tienda
+                            <i class="fas fa-shopping-cart"></i> Carrito de compras
                         </a>
                     </li>
                 </ul>
