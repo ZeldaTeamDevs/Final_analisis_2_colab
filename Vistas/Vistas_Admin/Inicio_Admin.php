@@ -1,3 +1,30 @@
+
+<?php
+    // Conexión a la base de datos
+    $conexion = mysqli_connect("localhost", "root", "", "bd_petcorp_system");
+    mysqli_set_charset($conexion, "utf8");
+
+    // Consultas SQL para contar registros en cada tabla
+    $queryArticulos = "SELECT COUNT(*) AS count FROM inventario";
+    $resultArticulos = mysqli_query($conexion, $queryArticulos);
+    $rowArticulos = mysqli_fetch_assoc($resultArticulos);
+    $countArticulos = $rowArticulos['count'];
+
+    $queryCitas = "SELECT COUNT(*) AS count FROM citas";
+    $resultCitas = mysqli_query($conexion, $queryCitas);
+    $rowCitas = mysqli_fetch_assoc($resultCitas);
+    $countCitas = $rowCitas['count'];
+
+    $queryMascotas = "SELECT COUNT(*) AS count FROM tb_mascota";
+    $resultMascotas = mysqli_query($conexion, $queryMascotas);
+    $rowMascotas = mysqli_fetch_assoc($resultMascotas);
+    $countMascotas = $rowMascotas['count'];
+
+    $queryUsuarios = "SELECT COUNT(*) AS count FROM tb_usuario";
+    $resultUsuarios = mysqli_query($conexion, $queryUsuarios);
+    $rowUsuarios = mysqli_fetch_assoc($resultUsuarios);
+    $countUsuarios = $rowUsuarios['count'];
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,7 +53,7 @@
             </button>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a href="Mascota.php">
+                    <a href="../Vistas_Admin/Modulo_Mascotas/Admin_Mascotas.php">
                         <i class="fas fa-paw"></i> Módulo Mascotas
                     </a>
                 </li>
@@ -57,45 +84,49 @@
             <!-- Contenido principal -->
                 
             <div class="container mt-5">
-               <div class="row">
-                   <div class="col-md-3">
-                       <div class="card">
-                           <div class="card-body">
-                               <i class="fas fa-paw fa-5x" style="color: #E57373;"></i>
-                               <h5 class="card-title">Mascotas</h5>
-                               <p class="card-text">Administra las mascotas.</p>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="col-md-3">
-                       <div class="card">
-                           <div class="card-body">
-                               <i class="fas fa-users fa-5x" style="color: #64B5F6;"></i>
-                               <h5 class="card-title">Usuarios</h5>
-                               <p class="card-text">Administra los usuarios del sistema.</p>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="col-md-3">
-                       <div class="card">
-                           <div class="card-body">
-                               <i class="far fa-calendar fa-5x" style="color: #FFD54F;"></i>
-                               <h5 class="card-title">Citas</h5>
-                               <p class="card-text">Administra las citas de las mascotas.</p>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="col-md-3">
-                       <div class="card">
-                           <div class="card-body">
-                               <i class="fas fa-shopping-bag fa-5x" style="color: #81C784;"></i>
-                               <h5 class="card-title">Productos</h5>
-                               <p class="card-text">Administra el inventario de productos.</p>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-            </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <i class="fas fa-paw fa-5x" style="color: #E57373;"></i>
+                                    <h5 class="card-title">Mascotas</h5>
+                                    <p class="card-text">Administra las mascotas.</p>
+                                    <p class="card-text">Cantidad de Registros: <?php echo $countMascotas; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class ="card">
+                                <div class="card-body">
+                                    <i class="fas fa-users fa-5x" style="color: #64B5F6;"></i>
+                                    <h5 class="card-title">Usuarios</h5>
+                                    <p class="card-text">Administra los usuarios del sistema.</p>
+                                    <p class="card-text">Cantidad de Registros: <?php echo $countUsuarios; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <i class="far fa-calendar fa-5x" style="color: #FFD54F;"></i>
+                                    <h5 class="card-title">Citas</h5>
+                                    <p class="card-text">Administra las citas de las mascotas.</p>
+                                    <p class="card-text">Cantidad de Registros: <?php echo $countCitas; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <i class="fas fa-shopping-bag fa-5x" style="color: #81C784;"></i>
+                                    <h5 class="card-title">Productos</h5>
+                                    <p class="card-text">Administra el inventario de productos.</p>
+                                    <p class="card-text">Cantidad de Registros: <?php echo $countArticulos; ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 
 
