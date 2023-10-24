@@ -68,7 +68,7 @@
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="#">
+                    <a href="../Vistas_Admin/Modulo_Productos/inicio_Productos_Facturacion.php">
                         <i class="fas fa-shopping-bag"></i> Inventario
                     </a>
                 </li>
