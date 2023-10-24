@@ -87,7 +87,7 @@
                 }
 
                 // Consulta SQL utilizando INNER JOIN para combinar las tablas
-                $sql = "SELECT m.id_Mascota, m.Nombre, m.`Fecha de nacimiento`, e.Especie, m.Raza, u.Nombre AS Usuario
+                $sql = "SELECT m.id_Mascota,cod_Mascota, m.Nombre, m.`Fecha de nacimiento`, e.Especie, m.Raza, u.Nombre AS Usuario
                         FROM tb_mascota m
                         INNER JOIN tb_usuario u ON m.Cod_usuario = u.Cod_Usuario
                         INNER JOIN tb_especie e ON m.Cod_especie = e.id_especie";
@@ -104,10 +104,17 @@
                         echo "<td>" . $row["Raza"] . "</td>";
                         echo "<td>" . $row["Usuario"] . "</td>";
                         echo "<td>";
-                        echo "<button class='btn btn-secondary' data-id='" . $row["id_Mascota"] . "' data-nombre='" . $row["Nombre"] . "' data-especie='" . $row["Especie"] . "'>Vacunas</button>";
-                        echo "<button class='btn btn-info' data-id='" . $row["id_Mascota"] . "' data-nombre='" . $row["Nombre"] . "'>Historial</button>";
-                        echo "<button class='btn btn-warning' data-id='" . $row["id_Mascota"] . "' data-nombre='" . $row["Nombre"] . "'>Cartilla</button>";
-                        echo "<button class='btn btn-success' data-id='" . $row["id_Mascota"] . "' data-nombre='" . $row["Nombre"] . "'>Visitas</button>";
+                        echo "<a class='btn btn-secondary' href='../../../Reportes/Cartilla.php?id=" . $row["cod_Mascota"] . "' target='_blank'>Vacunas</a>";
+                        echo "<form action='../../../Reportes/Hoja_de_vida.php' method='POST' target='_blank'>";
+                        echo "<input type='hidden' name='cod_Mascota' value='" . $row['cod_Mascota'] . "'>";
+                        echo "<button class='btn btn-warning' type='submit'>Cartilla</button>";
+                        echo "</form>";
+                        echo "<form action='../../../Reportes/historial_citas.php' method='POST' target='_blank'>
+                         <input type='hidden' name='cod_Mascota' value='" . $row['cod_Mascota'] . "'>
+                         <input type='hidden' name='nombre' value='" . $row['Nombre'] . "'>
+                         <button class='btn btn-success' type='submit'>Visitas</button>
+                       </form>";
+
                         echo "</td>";
                         echo "</tr>";
                     }

@@ -9,7 +9,7 @@ class PDF extends FPDF
     function Header()
     {
         $this->SetFont('Arial', 'B', 14);
-        $this->Cell(0, 10, 'Cartilla de Vacunacion', 0, 1, 'C');
+        $this->Cell(0, 10, 'Historial de Citas', 0, 1, 'C');
         $this->Ln(10);
     }
 
@@ -43,6 +43,10 @@ class PDF extends FPDF
     }
 }
 
+// Obtener los datos POST
+$cod_Mascota = $_POST['cod_Mascota'];
+$nombre = $_POST['nombre'];
+
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
@@ -55,33 +59,36 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Obtener el id_Mascota de la URL
-$idMascota = $_GET['id'];
-
-
-// Consulta para obtener la información de la cartilla de vacunación de la mascota
-$sql = "SELECT c.Vacuna_Aplicada, c.FechaAplicacion, c.ProximaCita
-        FROM cartilladevacunacion c
-        WHERE c.cod_Mascota = $idMascota";
+// Consulta para obtener la información de las citas de la mascota
+$sql = "SELECT c.ID_Cita, c.Fecha_Hora_Cita, c.ID_Veterinario, c.Estado_Cita, c.Desc_Cita
+        FROM citas c
+        WHERE c.cod_Mascota = $cod_Mascota";
 
 $result = $conn->query($sql);
 
 // Crear un array con los datos
-$cartilla_vacunacion = [['Vacuna', 'Fecha de Aplicacion', 'Proxima Cita']];
+$historial_citas = [['ID Cita', 'Fecha y Hora', 'ID Veterinario', 'Estado', 'Descripción']];
 if ($result) {
     while ($row = $result->fetch_assoc()) {
-        $cartilla_vacunacion[] = [$row['Vacuna_Aplicada'], $row['FechaAplicacion'], $row['ProximaCita']];
+        $historial_citas[] = [
+            $row['ID_Cita'],
+            $row['Fecha_Hora_Cita'],
+            $row['ID_Veterinario'],
+            $row['Estado_Cita'],
+            $row['Desc_Cita'],
+        ];
     }
 }
 
 // Crear el PDF
 $pdf = new PDF();
 $pdf->AddPage();
-$pdf->ChapterTitle('Cartilla de Vacunacion');
-$pdf->ChapterBody($cartilla_vacunacion);
+$pdf->ChapterTitle('Historial de Citas para ' . $nombre);
+$pdf->ChapterBody($historial_citas);
 
 // Cierra la conexión a la base de datos
 $conn->close();
 
 // Enviar el PDF al navegador
 $pdf->Output();
+?>
