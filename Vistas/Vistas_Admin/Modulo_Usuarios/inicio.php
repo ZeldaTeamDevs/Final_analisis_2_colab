@@ -26,6 +26,11 @@
             </button>
             <ul class="list-group">
                 <li class="list-group-item">
+                    <a href="../../Vistas_Admin/Modulo_Mascotas/Cartillas.php">
+                        <i class="fas fa-paw"></i> Cartillas
+                    </a>
+                </li>
+                <li class="list-group-item">
                     <a href="../../Vistas_Admin/Modulo_Mascotas/CRUD_mascotas.php">
                         <i class="fas fa-paw"></i> Gestion
                     </a>
@@ -36,8 +41,13 @@
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="../../Vistas_Admin/Modulo_Mascotas/CRUD_vacunas.php">
-                        <i class="fas fa-paw"></i> Vacunas
+                    <a href="../../Vistas_Admin/Modulo_Mascotas/Ficha.php">
+                        <i class="fas fa-paw"></i> Ficha
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="../Inicio_Admin.php">
+                        <i class="fas fa-paw"></i> Regresar
                     </a>
                 </li>
                 <li class="list-group-item">
@@ -50,8 +60,6 @@
         </div>
         <div class="main-content">
             <!-- Contenido principal -->
-            
-
         </div>
     </div>
 
