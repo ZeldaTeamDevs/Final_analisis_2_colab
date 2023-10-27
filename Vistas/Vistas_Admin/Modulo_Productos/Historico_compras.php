@@ -48,6 +48,71 @@
 
         <div class="main-content">
             <!-- Contenido principal -->
+
+            <div class="card mt-3">
+                    <div class="card-header">
+                        Historial de Compras
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Código Usuario</th>
+                                    <th>NIT</th>
+                                    <th>Fecha Emisión</th>
+                                    <th>Productos</th>
+                                    <th>Total</th>
+                                    <th>Opciones</th>
+                                    <!-- Agregar más columnas si es necesario -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                // Conexión a la base de datos para mostrar datos de usuarios en la tabla
+                               
+                                include '../../../php/conexionbd.php';
+                            
+                                // Consulta para obtener datos de mascotas
+                                $sql = "SELECT * FROM `facturas`";
+                                $result = $conn->query($sql);
+                            
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+
+                                        //Consulta para obtener el nombre del nivel
+                                        /*
+                                        $sql2 = "SELECT `Nivel` FROM `tb_niveles` WHERE `id_Nivel` = " . $row["Nivel"];
+
+                                        $result2 = $conn->query($sql2);
+                                        $row2 = $result2->fetch_assoc();
+                                        */
+                                        echo "<tr>";
+                                        echo "<td>" . $row["ID_Factura"] . "</td>";
+                                        echo "<td>" . $row["Cod_Usuario"] . "</td>";
+                                        echo "<td>" . $row["nit"] . "</td>";
+                                        echo "<td>" . $row["Fecha_Emision"] . "</td>";
+                                        echo "<td>" . $row["Descripcion_Servicios"] . "</td>";
+                                        echo "<td>" ."Q".$row["Monto_Total"] . "</td>";
+                                        echo 
+                                        "<td>
+                                        <form method='POST' action='".$_SERVER['PHP_SELF']."'>
+                                        <input type='hidden' name='id' value='".$row["ID_Factura"]."'>
+                                        <a href='../../../Reportes/Facturas.php' name='editar' class='btn btn-primary'>Imprimir</a>
+                                        </form>
+                                        </td>";
+
+                                        
+                                    }
+                                }
+                            
+                                $conn->close();
+                                ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
             
 
         </div>
