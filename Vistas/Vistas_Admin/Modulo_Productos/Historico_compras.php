@@ -18,36 +18,34 @@
 </head>
 <body>
     <!-- Dashboard -->
-    <div class="dashboard-container">
-        <div class="sidebar">
-            <h2>Admin</h2>
-            <button class="btn toggle-button" id="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <a href="../../Vistas_Admin/Modulo_Mascotas/CRUD_mascotas.php">
-                        <i class="fas fa-paw"></i> Gestion
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../../Vistas_Admin/Modulo_Mascotas/Historial_Clinico.php">
-                        <i class="fas fa-paw"></i> Historial clinico
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../../Vistas_Admin/Modulo_Mascotas/CRUD_vacunas.php">
-                        <i class="fas fa-paw"></i> Vacunas
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="../../../landing/HomePage.php">
-                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-                    </a>
-                </li>
-                <!-- Agrega más elementos de menú aquí -->
-            </ul>
-        </div>
+           <div class="dashboard-container">
+               <div class="sidebar">
+                   <h2>Admin</h2>
+                   <button class="btn toggle-button" id="menu-toggle">
+                       <i class="fas fa-bars"></i>
+                   </button>
+                   <ul class="list-group">
+                       <li class="list-group-item">
+                           <a href="Generar_Venta.php">
+                               <i class="fas fa-shopping-cart"></i> Generar Compras
+                           </a>
+                       </li>
+
+                       <li class="list-group-item">
+                           <a href="inicio_Productos_Facturacion.php">
+                               <i class="fas fa-arrow-left"></i> Regresar
+                           </a>
+                       </li>
+                       <li class="list-group-item">
+                           <a href="#">
+                               <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                           </a>
+                       </li>
+                       
+                       <!-- Agrega más elementos de menú aquí -->
+                   </ul>
+               </div>
+
         <div class="main-content">
             <!-- Contenido principal -->
             

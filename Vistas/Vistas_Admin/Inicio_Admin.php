@@ -63,12 +63,12 @@
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="Perfil.php">
-                        <i class="fas fa-user"></i> Perfiles de Usuarios
+                    <a href="../Vistas_Admin/Modulo_Usuarios/inicio.php">
+                        <i class="fas fa-user"></i> Perfiles de Usuariosa
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="#">
+                    <a href="../Vistas_Admin/Modulo_Productos/inicio_Productos_Facturacion.php">
                         <i class="fas fa-shopping-bag"></i> Inventario
                     </a>
                 </li>
