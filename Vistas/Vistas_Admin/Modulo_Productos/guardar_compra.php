@@ -5,7 +5,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $montoTotal = $_POST["montoTotal"];
     $cliente = $_POST["cliente"];
     $nit = $_POST["nit"];
-    $fechaEmision = $_POST["fecha_emision"];
+
+    // Generar la fecha de emisión actual
+    $fechaEmision = date("Y-m-d"); // Formato: YYYY-MM-DD
 
     // Conecta a la base de datos (reemplaza con tus credenciales)
     $conn = new mysqli("localhost", "root", "", "bd_petcorp_system");
@@ -32,4 +34,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 } else {
     echo "Solicitud no válida.";
 }
+
 ?>
