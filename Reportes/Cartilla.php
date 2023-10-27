@@ -57,7 +57,7 @@ if ($conn->connect_error) {
 
 // Obtener el id_Mascota de la URL
 $idMascota = $_GET['id'];
-
+//hasjkdhfkjashdfjkhw
 
 // Consulta para obtener la información de la cartilla de vacunación de la mascota
 $sql = "SELECT c.Vacuna_Aplicada, c.FechaAplicacion, c.ProximaCita
