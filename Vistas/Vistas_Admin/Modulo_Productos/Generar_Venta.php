@@ -52,15 +52,51 @@
             </div>
             <div class="card-header"></div>
             <div class="carrito">
-                <h2>Carrito de Compras</h2>
-                <ul id="carrito-lista"></ul>
-                <p>Total: <span id="carrito-total">0.00</span></p>
-            </div>
-            <div class="col text-end">
-                <button type="button" class="btn btn-success" id="generarCompraBtn">
-                    <i class="fas fa-shopping-cart"></i> Generar Compra
-                </button>
-            </div>
+    <h2>Carrito de Compras</h2>
+    <ul id="carrito-lista"></ul>
+    <p>Total: <span id="carrito-total">0.00</span></p>
+</div>
+
+<!-- Input para seleccionar al cliente -->
+<label for="cliente">Cliente:</label>
+<select id="cliente" name="cliente">
+    <?php
+    // Conexión a la base de datos
+    $conn = new mysqli("localhost", "root", "", "bd_petcorp_system");
+
+    // Verifica la conexión
+    if ($conn->connect_error) {
+        die("Conexión fallida: " . $conn->connect_error);
+    }
+
+    // Consulta SQL para obtener a todos los usuarios de la tabla
+    $sql = "SELECT `id_Usuario`, `Nombre`, `Correo`, `Contraseña`, `Nivel`, `Cod_Usuario` FROM `tb_usuario`";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo '<option value="' . $row['Cod_Usuario'] . '">' . $row['Nombre'] . '</option>';
+        }
+    }
+
+    // Cierra la conexión
+    $conn->close();
+    ?>
+</select>
+
+<!-- Input para agregar el NIT del cliente -->
+<label for="nit">NIT:</label>
+<input type="text" id="nit" name="nit" />
+
+<!-- Campo de fecha de emisión de la factura (puede ser un campo oculto si se genera automáticamente) -->
+<input type="hidden" id="fecha_emision" name="fecha_emision" value="<?php echo date('Y-m-d'); ?>" />
+
+<!-- Botón para generar la compra -->
+<div class="col text-end">
+    <button type="button" class="btn btn-success" id="generarCompraBtn">
+        <i class="fas fa-shopping-cart"></i> Generar Compra
+    </button>
+</div>
 
             <div class="col text-end">
                 <button type="button" class="btn btn-danger" id="cancelarCompraBtn" data-toggle="modal" data-target="#insertarModal">
@@ -185,63 +221,46 @@
             limpiarCarrito();
         });
     </script>
-    <script>
-        // Función para generar una compra
-        function generarCompra() {
-            const carritoLista = document.getElementById("carrito-lista").getElementsByTagName("li");
-            const carritoTotal = document.getElementById("carrito-total");
-            const descripcionServicios = [];
+<script>
+// Función para generar una compra
+function generarCompra() {
+    const carritoLista = document.getElementById("carrito-lista").getElementsByTagName("li");
+    const carritoTotal = document.getElementById("carrito-total");
+    const descripcionServicios = [];
 
-            // Recorre los elementos del carrito y obtén sus descripciones
-            for (let i = 0; i < carritoLista.length; i++) {
-                descripcionServicios.push(carritoLista[i].innerText);
-            }
-
-            const montoTotal = parseFloat(carritoTotal.textContent.replace("Q", ""));
-
-            // Envía los datos al servidor usando una solicitud AJAX
-            $.ajax({
-                url: 'guardar_compra.php',
-                method: 'POST',
-                data: { descripcionServicios: JSON.stringify(descripcionServicios), montoTotal: montoTotal },
-                success: function (response) {
-                    // Realizar acciones adicionales después de guardar la compra.
-                    alert(response); // Muestra la respuesta del servidor (puedes personalizarlo)
-                }
-            });
-
-            // Limpia el carrito
-            limpiarCarrito();
-        }
-    </script>
-    <script>
-    // Función para generar una compra
-    function generarCompra() {
-        const carritoLista = document.getElementById("carrito-lista").getElementsByTagName("li");
-        const carritoTotal = document.getElementById("carrito-total");
-        const descripcionServicios = [];
-
-        // Recorre los elementos del carrito y obtén sus descripciones
-        for (let i = 0; i < carritoLista.length; i++) {
-            descripcionServicios.push(carritoLista[i].innerText);
-        }
-
-        const montoTotal = parseFloat(carritoTotal.textContent.replace("Q", ""));
-
-        // Envía los datos al servidor usando una solicitud AJAX
-        $.ajax({
-            url: 'guardar_compra.php',
-            method: 'POST',
-            data: { descripcionServicios: JSON.stringify(descripcionServicios), montoTotal: montoTotal },
-            success: function (response) {
-                // Realizar acciones adicionales después de guardar la compra.
-                alert(response); // Muestra la respuesta del servidor (puedes personalizarlo)
-            }
-        });
-
-        // Limpia el carrito
-        limpiarCarrito();
+    // Recorre los elementos del carrito y obtén sus descripciones
+    for (let i = 0; i < carritoLista.length; i++) {
+        descripcionServicios.push(carritoLista[i].innerText);
     }
+
+    const montoTotal = parseFloat(carritoTotal.textContent.replace("Q", ""));
+
+    // Obtenemos el valor del cliente seleccionado y el NIT
+    const cliente = document.getElementById("cliente").value;
+    const nit = document.getElementById("nit").value;
+
+    // Fecha de emisión ya está en el campo oculto
+
+    // Envía los datos al servidor usando una solicitud AJAX
+    $.ajax({
+        url: 'guardar_compra.php',
+        method: 'POST',
+        data: { 
+            descripcionServicios: JSON.stringify(descripcionServicios), 
+            montoTotal: montoTotal,
+            cliente: cliente,
+            nit: nit,
+            fecha_emision: document.getElementById("fecha_emision").value
+        },
+        success: function (response) {
+            // Realizar acciones adicionales después de guardar la compra.
+            alert(response); // Muestra la respuesta del servidor (puedes personalizarlo)
+        }
+    });
+
+    // Limpia el carrito
+    limpiarCarrito();
+}
 </script>
 
 <script>

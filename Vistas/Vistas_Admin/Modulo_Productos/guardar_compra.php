@@ -3,6 +3,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Obtén los datos enviados desde JavaScript
     $descripcionServicios = json_decode($_POST["descripcionServicios"]);
     $montoTotal = $_POST["montoTotal"];
+    $cliente = $_POST["cliente"];
+    $nit = $_POST["nit"];
+    $fechaEmision = $_POST["fecha_emision"];
 
     // Conecta a la base de datos (reemplaza con tus credenciales)
     $conn = new mysqli("localhost", "root", "", "bd_petcorp_system");
@@ -11,10 +14,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("Conexión fallida: " . $conn->connect_error);
     }
 
-    // Inserta los datos en la base de datos
-    $sql = "INSERT INTO facturas (descripcion_servicios, monto_total) VALUES (?, ?)";
+    // Inserta los datos en la tabla de facturas
+    $sql = "INSERT INTO facturas (Descripcion_Servicios, Monto_Total, Cod_Usuario, nit, Fecha_Emision) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sd", $descripcionServiciosTexto, $montoTotal);
+    $stmt->bind_param("sddsd", $descripcionServiciosTexto, $montoTotal, $cliente, $nit, $fechaEmision);
     
     $descripcionServiciosTexto = implode(", ", $descripcionServicios);
     
