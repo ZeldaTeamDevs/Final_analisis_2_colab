@@ -73,7 +73,7 @@
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="#">
+                    <a href="../../landing/HomePage.php">
                         <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
                     </a>
                 </li>
@@ -99,7 +99,7 @@
                             <div class ="card">
                                 <div class="card-body">
                                     <i class="fas fa-users fa-5x" style="color: #64B5F6;"></i>
-                                    <h5 class="card-title">Usuarios</h5>
+                                    <h5 class="card-title"><a href="./Vistas_Usuarios/Usuarios_Admin.php" style="color: gray;">Usuarios</a></h5>
                                     <p class="card-text">Administra los usuarios del sistema.</p>
                                     <p class="card-text">Cantidad de Registros: <?php echo $countUsuarios; ?></p>
                                 </div>
@@ -109,7 +109,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <i class="far fa-calendar fa-5x" style="color: #FFD54F;"></i>
-                                    <h5 class="card-title">Citas</h5>
+                                    <h5 class="card-title"><a href="./Vistas_Citas/Citas_Admin.php" style="color: gray;">Citas</a></h5>
                                     <p class="card-text">Administra las citas de las mascotas.</p>
                                     <p class="card-text">Cantidad de Registros: <?php echo $countCitas; ?></p>
                                 </div>

@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li class="list-group-item">
-                    <a href="#">
+                    <a href="../landing/HomePage.php">
                         <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
                     </a>
                 </li>
