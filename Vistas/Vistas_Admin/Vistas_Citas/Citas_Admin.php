@@ -386,58 +386,48 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                // Conexión a la base de datos para mostrar datos de usuarios en la tabla
-                               
-                                include '../../../php/conexionbd.php';
+                        <?php
+                        // Conexión a la base de datos
+                        include '../../../php/conexionbd.php';
+
+                        // Consulta para obtener datos de citas con nombres de veterinarios y estados
+                        $sql = "SELECT c.ID_Cita, c.cod_Mascota, c.Fecha_Hora_Cita, v.Nombre_Veterinario, nc.`Estado de cita`, c.Desc_Cita
+                                FROM `citas` c
+                                INNER JOIN `veterinarios` v ON c.ID_Veterinario = v.ID_Veterinario
+                                INNER JOIN `nom_citas` nc ON c.Estado_Cita = nc.id_cita";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row["ID_Cita"] . "</td>";
+                                echo "<td>" . $row["cod_Mascota"] . "</td>";
+                                echo "<td>" . $row["Fecha_Hora_Cita"] . "</td>";
+                                echo "<td>" . $row["Nombre_Veterinario"] . "</td>";
+                                echo "<td>" . $row["Estado de cita"] . "</td>";
+                                echo "<td>" . $row["Desc_Cita"] . "</td>";
+                                echo 
+                                "<td>
+                                    <form method='POST' action='".$_SERVER['PHP_SELF']."'>
+                                    <input type='hidden' name='id' value='".$row["ID_Cita"]."'>
+                                    <button name='editar' class='btn btn-primary'>Editar</button>
+                                    </form>
+                                </td>";
                             
-                                // Consulta para obtener datos de mascotas
-                                $sql = "SELECT * FROM `citas`";
-                                $result = $conn->query($sql);
-                            
-                                if ($result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
+                                echo 
+                                "<td>
+                                    <form onsubmit=\"return confirm('Realmente desea eliminar el registro?');\" method='POST' action='../../../Operaciones_CA/eliminar.php'>
+                                    <input type='hidden' name='id' value='".$row["ID_Cita"]."'>
+                                    <button type='submit' name'eliminar' class='btn btn-danger'>Eliminar</button>
+                                    </form>
+                                </td>";
+                            }
+                        }
+                    
+                        $conn->close();
+                        ?>
+                    </tbody>
 
-                                        //Consulta para obtener el nombre del veterinario                 
-                                        $sqlveterinario = "SELECT `Nombre_Veterinario` FROM `veterinarios` WHERE `ID_Veterinario` = " . $row["ID_Veterinario"];
-                                        $resultv = $conn->query($sqlveterinario);
-                                        $rowv = $resultv->fetch_assoc();
-
-                                        //Consulta para obtener el nombre del estado              
-                                        $sqlestado = "SELECT `Estado de cita` FROM `nom_citas` WHERE id_cita=" . $row["Estado_Cita"];
-                                        $resulte = $conn->query($sqlestado);
-                                        $rowe = $resulte->fetch_assoc();
-                                        
-
-                                        echo "<tr>";
-                                        echo "<td>" . $row["ID_Cita"] . "</td>";
-                                        echo "<td>" . $row["cod_Mascota"] . "</td>";
-                                        echo "<td>" . $row["Fecha_Hora_Cita"] . "</td>";
-                                        echo "<td>" . $rowv["Nombre_Veterinario"] . "</td>";
-                                        echo "<td>" . $rowe["Estado de cita"] . "</td>";
-                                        echo "<td>" . $row["Desc_Cita"] . "</td>";
-                                        echo 
-                                        "<td>
-                                        <form method='POST' action='".$_SERVER['PHP_SELF']."'>
-                                        <input type='hidden' name='id' value='".$row["ID_Cita"]."'>
-                                        <button name='editar' class='btn btn-primary'>Editar</button>
-                                        </form>
-                                        </td>";
-
-                                        echo 
-                                        "<td>
-                                        <form  onsubmit=\"return confirm('Realmente desea eliminar el registro?');\" method='POST' action='../../../Operaciones_CA/eliminar.php'>
-                                        <input type='hidden' name='id' value='".$row["ID_Cita"]."'>
-                                        <button type='submit' name='eliminar' class='btn btn-danger' >Eliminar</button>
-                                        </form>
-                                        </td>";
-                                        
-                                    }
-                                }
-                            
-                                $conn->close();
-                                ?>
-                            </tbody>
                         </table>
                     </div>
                 </div>
