@@ -123,7 +123,7 @@
                             
                                 // Consulta SQL para obtener todas las citas
                                 // Consulta SQL para obtener todas las citas
-                                $sql = "SELECT c.ID_Cita, c.Fecha_Hora_Cita, c.Estado_Cita, m.Nombre as NombreMascota, m.Raza, v.Nombre_Veterinario 
+                                $sql = "SELECT c.ID_Cita, c.Fecha_Hora_Cita,Desc_Cita, c.Estado_Cita, m.Nombre as NombreMascota, m.Raza, v.Nombre_Veterinario 
                                 FROM citas c
                                 INNER JOIN tb_mascota m ON c.cod_Mascota = m.cod_Mascota
                                 INNER JOIN veterinarios v ON c.ID_Veterinario = v.ID_Veterinario
@@ -143,8 +143,19 @@
                                         echo '<p>Fecha y Hora: ' . $row['Fecha_Hora_Cita'] . '</p>';
                                         echo '<p>Veterinario: ' . $row['Nombre_Veterinario'] . '</p>';
                                         echo '<p>Estado: ' . $row['Estado_Cita'] . '</p>';
+                                        echo '<p>Descripción de la Cita: ' . $row['Desc_Cita'] . '</p>'; // Agregar campo Desc_Cita
+                                
                                         // Agregar botón para ver cita
-                                        echo '<a href="ver_cita.php?id=' . $row['ID_Cita'] . '" class="btn btn-primary">Ver Cita</a>';
+                                        echo '<form method="post" action="../Reportes/Cita.php" target="_blank">';
+                                        echo '<input type="hidden" name="NombreMascota" value="' . $row['NombreMascota'] . '">';
+                                        echo '<input type="hidden" name="Raza" value="' . $row['Raza'] . '">';
+                                        echo '<input type="hidden" name="Fecha_Hora_Cita" value="' . $row['Fecha_Hora_Cita'] . '">';
+                                        echo '<input type="hidden" name="Nombre_Veterinario" value="' . $row['Nombre_Veterinario'] . '">';
+                                        echo '<input type="hidden" name="Estado_Cita" value="' . $row['Estado_Cita'] . '">';
+                                        echo '<input type="hidden" name="Desc_Cita" value="' . $row['Desc_Cita'] . '">';
+                                        echo '<button type="submit" class="btn btn-primary">ver cita</button>';
+                                        echo '</form>';
+                                
                                         echo '</div>';
                                         echo '</div>';
                                         echo '</div>';
@@ -152,6 +163,7 @@
                                 } else {
                                     echo "No se encontraron citas en la base de datos.";
                                 }
+                                
                             
                                 // Cierra la conexión
                                 $conn->close();
