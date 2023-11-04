@@ -426,6 +426,7 @@
                     
                         $conn->close();
                         ?>
+                        <!--final de la tabla -->
                     </tbody>
 
                         </table>
