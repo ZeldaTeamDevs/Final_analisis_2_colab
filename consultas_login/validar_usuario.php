@@ -1,6 +1,3 @@
-
-
-
 <?php
 
 include "../php/conexionbd.php";
